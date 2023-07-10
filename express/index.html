@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+<title>Darrell Owens</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<style>
+body {font-family: "Lato", sans-serif}
+    .substack-icon {
+        display: inline-block;
+        position: relative;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%, -20%);
+      width: 150px;
+      height: 150px;
+      background: url('https://api.iconify.design/simple-icons/substack.svg?color=%23ff6700') no-repeat center center / contain;
+    }
+    .substack:hover {
+    color: #ff0000;
+    }
+</style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+        <a href="#proj" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROJECTS</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+    </div>
+    </div>
+
+    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">HOME</a>
+    <a href="#proj" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PROJECTS</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+    </div>
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+    <!-- Profile Section -->
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+        <h2 class="w3-wide">Darrell Owens</h2>
+        <h3 class="w3-opacity">Software Engineer and Activist</h3>
+        <p class="w3-justify">I'm a software engineer and an activist in housing, transit and traffic policing reform. I spent 5 years mostly contributing software and data projects to subsidized housing developers, volunteer groups and nonprofit housing organizations before I graduated from the University of California, Santa Cruz in Computer Science. My work is evidence-based and warrants many software projects, particularly maps, that have seen increased use in news publications and academic research. As a result, this website will be an easily accessible portfolio of my products.</p>
+    </div>
+    <!-- Map Section -->
+    <div class="w3-black" id="proj">
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+        <h2 class="w3-wide w3-center">PROJECTS</h2>
+        <h4 class="w3-opacity w3-center"><i>More published maps and projects will be added soon.</i></h4>
+        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+            <div class="w3-third w3-margin-bottom">
+            <img src="./images/demography_map.png" style="object-fit: cover; width: 100%; height: 170px;" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+                <p><b>Demographic Change</b></p>
+                <p class="w3-opacity">Census 2020 & 2010 Decinneal Data</p>
+                <p>Shows the absolute numerical changes in population and households by race / ethinicity and housing units from 2010 to 2020.</p>
+		        <a href="/dec_demographic_change" class="w3-button w3-black w3-margin-bottom">MAP</a>
+            </div>
+            </div>
+            <div class="w3-third w3-margin-bottom">
+            <img src="./images/commuter_map.png" style="object-fit: cover; width: 100%; height: 170px;" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+                <p><b>Commuter Map</b></p>
+                <p class="w3-opacity">American Community Survey 2015 - 2019</p>
+                <p>The primary means of transportation people commute to work throughout the U.S. from 2015 - 2019 compiled by census surveys.</p>
+                <option disabled = "disabled" a href="#" class="w3-button w3-black w3-margin-bottom">MAP</a>
+            </div>
+            </div>
+            <div class="w3-third w3-margin-bottom">
+            <img src="./images/actransit_map.png" style="object-fit: cover; width: 100%; height: 170px;" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+                <p><b>AC Transit Ridership</b></p>
+                <p class="w3-opacity">AC Transit Data</p>
+                <p>Two maps showing the number of passangers boarding and exiting every AC Transit bus line by stop location pre and post-pandemic. </p><br>
+                <option disabled = "disabled" a href="#" class="w3-button w3-black w3-margin-bottom">MAP</a>
+            </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- The Contact Section -->
+    <div class="w3-container w3-content w3-padding-64 w3-center" style="max-width:800px" id="contact">
+        <h2 class="w3-wide w3-center">CONTACT</h2>
+        <h3 class="w3-wide w3-center">Subscribe to my Substack where I publish analysis on my projects</h3>
+            </div>
+        <a href="https://darrellowens.substack.com">
+        <div class="substack-icon w3-hover-opacity icon"></div></a>
+    <div class="w3-container w3-content w3-padding-64 w3-center" style="max-width:800px" id="contact">
+        <h3 class="w3-wide w3-center">And follow me on social media</h3>
+        <a href="https://twitter.com/IDoTheThinking">
+        <i class="fab fa-twitter fa-10x w3-hover-opacity" style="color: #55acee"></i></a>
+        <a href="https://www.linkedin.com/in/darrell-owens-26617739/">
+        <i class="fab fa-linkedin fa-10x w3-hover-opacity" style="color: #3b5998"></i></a>
+        <a href="https://github.com/DarrellOwensRCD">
+        <i class="fab fa-github fa-10x w3-hover-opacity"></i></a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <p2 class="w3-medium">Darrell Owens 2023 | darrellblowens@gmail.com </p2>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
+    <!-- Image of location/map -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Dusk_in_the_Oakland_Hills_-_Flickr_-_Joe_Parks.jpg/2560px-Dusk_in_the_Oakland_Hills_-_Flickr_-_Joe_Parks.jpg" class="w3-image w3-greyscale-min" style="margin-top:10px; width:100%">
+    </body>
+</html>
+
