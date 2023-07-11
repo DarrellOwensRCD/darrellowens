@@ -16,7 +16,7 @@
     src="/js/lib/dummy.js"
     
   ></script>
-
+  <script src="../config.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
       <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
@@ -163,6 +163,7 @@
     <script type="text/javascript">//<![CDATA[
 
       // define access token
+      //mapboxgl.accessToken = config.API_KEY;
       mapboxgl.accessToken = process.env.API_KEY_MB; 
       let selectedLayer = 'PopulationGrowth'
 
