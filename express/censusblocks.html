@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Census 2020 - Change Map</title>
+  <title>Census 2020 Blocks - Change Map</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
@@ -97,7 +97,7 @@
         <div class="w3-dropdown-hover w3-hide-small">
         <button class="w3-padding-large w3-button" title="More"> CHANGE GEOGRAPHY <i class="fa fa-caret-down"></i></button>     
         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <option a href="/censusblocks" class="w3-bar-item w3-button">Census Blocks - 6 county Bay Area</a>
+            <option a href="/dec_demographic_change" class="w3-bar-item w3-button">California Census Tracts</a>
             <option disabled = "disabled" a href="#" class="w3-bar-item w3-button">U.S. Counties - Not Yet Available</a>
         </div>
         </div>
@@ -107,8 +107,8 @@
     <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
     <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
     <a href="/" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">HOME</a>
-    <div class="w3-dropdown-content w3-bar-block w3-card-4"> 
-        <option a href="/censusblocks" class="w3-bar-item w3-button">Census Blocks - 6 county Bay Area</a>
+    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <option a href="/dec_demographic_change" class="w3-bar-item w3-button">California Census Tracts</a>
         <option disabled = "disabled" a href="#" class="w3-bar-item w3-button">U.S. Counties - Not Yet Available</a>
      </div>
     </div>
@@ -161,9 +161,9 @@
     </div>
     <div style="background: linear-gradient(90deg, #7e0101, white, #01650c); height: 10px; width: 100%; margin: 5px 0;"></div>
     <div style="display: flex; justify-content: space-between;font-size: 12px;">
-        <span>-1000</span>
+        <span>-100</span>
         <span>0</span>
-        <span>+1000</span>
+        <span>+100</span>
     </div>
   </div>
     <script type="text/javascript">//<![CDATA[
@@ -173,8 +173,8 @@
       //create map
       var map = new mapboxgl.Map({
         container: 'map', // container id
-        style: 'mapbox://styles/idothethinking/ckshtdrsj7si217mw9ua1e42v', // map style URL from Mapbox Studio
-	center:[-122.264,37.812], //center over Oakland
+        style: 'mapbox://styles/idothethinking/clkcomtqm000w01oh06g72dgc', // map style URL from Mapbox Studio
+	      center:[-122.264,37.812], //center over Oakland
         zoom: 11.0
       });
       //Geocoder
@@ -216,13 +216,13 @@
           id: highlightLayer,
           type: 'line',
           source: "composite",
-          "source-layer": "CA2020CensusNetChange-3cu4y1",
+          "source-layer": "BayAreaBlocksSixCounty-cyyvy4",
           paint: {
             'line-color': '#000000',
             'line-width': 5,
             'line-opacity' : 1
           },
-          filter: ['==','TRACTCE',''],
+          filter: ['==','GISJOIN',''],
         });
 				// Dict dec
 				let lookuprace = {"WhitePopulationGrowth" : "White",
@@ -296,13 +296,22 @@
         "AllH" : "Owner Households (2010): ", "AllR": "Renter Households (2010): ", "LH": "Latino Homeowners (2010): ","LR" : "Latino Leaseholders (2010): ",
         "WH" : "White Homeowners (2010): ", "WR" : "White Leaseholders (2010): ", "BH" : "Black Homeowners (2010): ", "BR" : "Black Leaseholders (2010): ", "AH" : "Asian Homeowners (2010): ", "AR" : "Asian Leaseholders (2010): ", "NH" : "Native American Homeowners (2010): ", "NR" : "Native American Leaseholders (2010): " , "PH" : "Pacific Islander Homeowners (2010): " , "PR": "Pacific Islander Leaseholders (2010): ", "OH" : "Other Homeowners (2010): ", "OR": "Other Leaseholders (2010): ", "MH" : "Multi-Race Homeowners (2010): " , "MR": "Multi-Race Leaseholders (2010): "
         }
+        let countyid =
+        {
+          "001" : "Alameda County",
+          "013" : "Contra Costa County",
+          "075" : "San Francisco County",
+          "085" : "Santa Clara County",
+          "041" : "Marin County",
+          "081" : "San Mateo County",
+        }
 
         // change info window on hover
         map.on('mousemove', function(e) {
           var tracts = map.queryRenderedFeatures(e.point, {
             layers: [selectedLayer]
           });
-          map.setFilter(highlightLayer, ['==', 'TRACTCE', tracts[0].properties.TRACTCE]);
+          map.setFilter(highlightLayer, ['==', 'GISJOIN', tracts[0].properties.GISJOIN]);
 					if (tracts.length > 0){
               var decade10 = tracts[0]['properties'][lookuprace[selectedLayer]] - tracts[0]['properties'][lookupracenet[selectedLayer]]
                     plus = ''
@@ -315,18 +324,15 @@
         data10 = tracts[0]['properties'][lookuprace[selectedLayer]]- tracts[0]['properties'][lookupracenet[selectedLayer]] 
 	      document.getElementById('pd').innerHTML =
               '<h3><strong>' +
-              tracts[0]['properties']['CountyName'] +
+              countyid[tracts[0]['properties']['COUNTYFP20']] +
               '</strong><br>' +              
-              'Census Tract: ' +
-              tracts[0]['properties']['TRACTCE'] +
+              tracts[0]['properties']['NAME20'] +
               '</h3><span style="font-size: 1.1em;"><p>' +
               lookname[selectedLayer] + 
               (tracts[0]['properties'][lookuprace[selectedLayer]]).toLocaleString() + '</p><p>' +
               lookname10[selectedLayer] + data10.toLocaleString() +
               '</p><strong><p>Difference since 2010: ' + plus +
-              (tracts[0]['properties'][lookupracenet[selectedLayer]]).toLocaleString() +
-              ' (' + plus +
-              tracts[0]['properties'][lookupracenetper[selectedLayer]] + '%)</p></span></strong>';
+              (tracts[0]['properties'][lookupracenet[selectedLayer]]).toLocaleString() + '</p></span></strong>';
           }
         });
       });

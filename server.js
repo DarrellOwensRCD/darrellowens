@@ -4,6 +4,9 @@ const express = require('express');
 const path = require('path');const app = express();
 app.use(express.json());
 app.use(express.static("express"));// default URL for website
+app.use('/censusblocks', function(req, res) {
+    res.sendFile(path.join(__dirname + '/express/censusblocks.html'));
+});
 app.use('/dec_demographic_change', function(req, res) {
     res.sendFile(path.join(__dirname + '/express/census_rate_of_change.html'));
 });
